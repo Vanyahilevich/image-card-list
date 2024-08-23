@@ -1,21 +1,19 @@
-function App() {
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import PostsPage from './pages/posts-page';
+import PostPage from './pages/post-page';
+import { useGetPostsQuery } from './services/post-api';
+
+const App: React.FC = () => {
+  useGetPostsQuery();
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<PostsPage />} />
+        <Route path="/post/:id" element={<PostPage />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
